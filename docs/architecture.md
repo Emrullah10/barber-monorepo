@@ -3,7 +3,7 @@
 
 ## Genel Bakış
 
-Bu repo tek bir monorepo içinde: bir backend servisi (`services/barber-service`), bir API gateway (`services/barber-gateway`), framework-bağımsız iş mantığı (`core/service-barber`), paylaşılan paketler (`packages/modules/*`), veritabanı şemaları (`db-schemas/`), testler (`test/`) ve bir React frontend (`apps/barber-web`) barındırır.
+Bu repo tek bir monorepo içinde: bir backend servisi (`services/barber-service`), bir API gateway (`services/barber-gateway`), framework-bağımsız iş mantığı (`core/service-barber`), paylaşılan paketler (`packages/modules/*`), veritabanı şemaları (`db-schemas/`), testler (`test/`) ve bir React frontend (`barber-web`) barındırır.
 
 Şablonun **tek-servisli sadeleştirilmiş varyantı** uygulandı (çok-servisli mikroservis mimarisi + Redis service-discovery bilinçli olarak atlandı — tek backend servisi için gereksiz karmaşıklık olurdu).
 
@@ -18,7 +18,7 @@ barber/
 ├── packages/modules/        # @barber/{config,errors,helper,middlewares}
 ├── db-schemas/              # Numaralı SQL şemaları + migrations/ + seed/
 ├── test/                    # Jest: unit + integration
-├── apps/barber-web/         # React 19 + Vite frontend
+├── barber-web/         # React 19 + Vite frontend
 └── docs/                    # Bu dosya
 ```
 
@@ -60,7 +60,7 @@ Migration geçmişi önemli bir düzeltme içerir: orijinal şema, kodun bağım
 
 Jest, ESM (`--experimental-vm-modules`). `test/config/` paylaşılan test altyapısını (fake query, test-server) barındırır. `test/services/service-barber/{unit,integration}/` — unit testler `make*` factory'lere plain-object fake inject eder (mock kütüphanesi gerekmez), integration test gerçek `boot.js`'i injected fake pool ile ayağa kaldırıp supertest ile HTTP zincirini test eder.
 
-## apps/barber-web/ — Frontend
+## barber-web/ — Frontend
 
 React 19 + Vite, JSX (TypeScript kullanılmıyor). State yönetimi ikiye bölünmüş: Zustand (`store/authStore.jsx`, sadece client/UI state) + React Query (`features/*/hooks/`, tüm sunucu verisi). `shared/{axios,constant,providers,translation}/` — merkezi axios instance (base URL artık `VITE_API_URL` env'den), stabil query key'ler, `QueryProvider` (`retry:false, refetchOnWindowFocus:false`), i18n.
 

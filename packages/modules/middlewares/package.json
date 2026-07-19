@@ -1,0 +1,11 @@
+{
+  "name": "@barber/middlewares",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "@barber/errors": "*",
+    "jsonwebtoken": "^9.0.0"
+  }
+}

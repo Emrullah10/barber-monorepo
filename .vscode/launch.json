@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "1. Debug Barber Backend",
+      "program": "${workspaceFolder}/backend/main.js",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "internalConsole",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "2. Debug Barber Gateway",
+      "program": "${workspaceFolder}/gateway/src/server.js",
+      "cwd": "${workspaceFolder}/gateway",
+      "console": "internalConsole",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🚀 RUN ALL: Backend + Gateway",
+      "configurations": ["1. Debug Barber Backend", "2. Debug Barber Gateway"],
+      "stopAll": true
+    }
+  ]
+}

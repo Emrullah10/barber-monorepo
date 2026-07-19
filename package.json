@@ -1,0 +1,20 @@
+{
+  "name": "barber-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "core/*",
+    "services/*",
+    "packages/modules/*",
+    "apps/*",
+    "test"
+  ],
+  "scripts": {
+    "dev:service": "npm run dev -w services/barber-service",
+    "dev:gateway": "npm run dev -w services/barber-gateway",
+    "dev:web": "npm run dev -w apps/barber-web",
+    "test": "jest --config test/jest.config.js",
+    "lint": "eslint .",
+    "format": "prettier -w ."
+  }
+}

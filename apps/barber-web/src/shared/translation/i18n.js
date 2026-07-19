@@ -18,9 +18,9 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'tr', // Default to Turkish if no language detected
+    fallbackLng: 'tr',
     interpolation: {
-      escapeValue: false, // React already protects from XSS
+      escapeValue: false,
     },
     detection: {
       order: ['localStorage', 'navigator'],

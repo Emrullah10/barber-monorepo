@@ -1,22 +1,27 @@
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import api from '@/api/axios';
 
 export function useServiceMutations() {
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (fn) => fn(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['services'] });
+    },
+  });
 
   const run = async (fn) => {
-    setIsLoading(true);
     setError(null);
     try {
-      const { data } = await fn();
+      const { data } = await mutation.mutateAsync(fn);
       return data;
     } catch (err) {
       const msg = err.response?.data?.message ?? 'Bir hata oluştu.';
       setError(msg);
       throw err;
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -24,5 +29,12 @@ export function useServiceMutations() {
   const updateService = (id, body) => run(() => api.put(`/services/${id}`, body));
   const deleteService = (id) => run(() => api.delete(`/services/${id}`));
 
-  return { createService, updateService, deleteService, isLoading, error, clearError: () => setError(null) };
+  return {
+    createService,
+    updateService,
+    deleteService,
+    isLoading: mutation.isPending,
+    error,
+    clearError: () => setError(null),
+  };
 }

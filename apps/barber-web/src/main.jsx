@@ -11,13 +11,16 @@ import '@fontsource/nunito-sans/700.css'
 import './index.css'
 import './i18n.js'
 import { TerraThemeProvider } from '@/theme/ThemeContext'
+import { QueryProvider } from '@/shared/providers/QueryProvider'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <TerraThemeProvider>
-      <CssBaseline />
-      <App />
-    </TerraThemeProvider>
+    <QueryProvider>
+      <TerraThemeProvider>
+        <CssBaseline />
+        <App />
+      </TerraThemeProvider>
+    </QueryProvider>
   </StrictMode>,
 )

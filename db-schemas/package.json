@@ -1,0 +1,14 @@
+{
+  "name": "@barber/db-schemas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "migrate:hash-passwords": "node migrations/hash-existing-passwords.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0"
+  }
+}

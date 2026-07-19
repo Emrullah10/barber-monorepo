@@ -7,12 +7,14 @@
     "services/*",
     "packages/modules/*",
     "apps/*",
+    "db-schemas",
     "test"
   ],
   "scripts": {
     "dev:service": "npm run dev -w services/barber-service",
     "dev:gateway": "npm run dev -w services/barber-gateway",
     "dev:web": "npm run dev -w apps/barber-web",
+    "migrate:hash-passwords": "npm run migrate:hash-passwords -w db-schemas",
     "test": "jest --config test/jest.config.js",
     "lint": "eslint .",
     "format": "prettier -w ."
